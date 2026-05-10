@@ -15,6 +15,15 @@ This repository provides pretrained YOLO models for Sri Lankan traffic sign dete
 - `model_1.pt`, `model_2.pt`: pretrained model weights
 - `requirements.txt`: Python dependencies for running detection applications
 
+## Dependency Notes
+
+`requirements.txt` currently includes:
+- Core inference dependencies (Ultralytics, Torch, OpenCV, NumPy, Pillow)
+- Streamlit-related packages
+- Visualization packages (Matplotlib, Seaborn, Plotly)
+
+For CLI-only inference, only the core inference stack is required. The Streamlit and visualization packages are included for app/dashboard workflows when those scripts are added.
+
 ## Requirements
 
 - Python 3.9+
@@ -82,4 +91,4 @@ yolo predict model=model_2.pt source=path/to/image_or_video
 
 ## Notes
 
-If you add application code (for example, Streamlit UI or custom Python scripts), update this README with exact run commands for those files.
+When app scripts (such as Streamlit dashboards or custom inference pipelines) are added, update this README with their exact run commands.
