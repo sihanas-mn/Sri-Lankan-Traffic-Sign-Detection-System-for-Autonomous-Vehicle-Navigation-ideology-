@@ -1,152 +1,85 @@
 # Sri Lankan Traffic Sign Detection System for Autonomous Vehicle Navigation
 
-This project focuses on detecting Sri Lankan traffic signs using a **YOLOv8-based model** trained with local traffic sign data on top of a base model.
+This repository provides pretrained YOLO models for Sri Lankan traffic sign detection and the dependencies needed to run inference.
 
-It is intended to help developers and researchers quickly run sign detection for autonomous vehicle navigation experiments.
-
----
-
-## Project Goals
-
-- Detect Sri Lankan traffic signs in images/video streams.
-- Provide a ready-to-run inference setup.
-- Support further fine-tuning and research on local traffic environments.
-
----
-
-## Current Repository Status
-
-At the moment, this repository is being prepared.  
-The complete source files, model files, and runnable scripts can be added/updated after upload.
-
-This README is designed as a user guide so the project can be used immediately once those files are available.
-
----
-
-## Planned / Expected Repository Structure
+## Repository Contents
 
 ```text
 .
-├── models/                  # Trained model weights (e.g., best.pt)
-├── src/                     # Python source code for inference/training utilities
-├── data/                    # Dataset configs / sample inputs (optional)
-├── requirements.txt         # Python dependencies
+├── model_1.pt
+├── model_2.pt
+├── requirements.txt
 └── README.md
 ```
 
-> If your uploaded files use a different structure, update this section to match the final layout.
-
----
+- `model_1.pt`, `model_2.pt`: pretrained model weights
+- `requirements.txt`: Python dependencies for running detection applications
 
 ## Requirements
 
-- Python 3.9+ (recommended)
+- Python 3.9+
 - pip
-- (Optional) CUDA-enabled GPU for faster inference
+- Optional: CUDA-capable GPU for faster inference
 
----
+## Setup
 
-## Installation
-
-1. **Clone the repository**
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/sihanas-mn/Sri-Lankan-Traffic-Sign-Detection-System-for-Autonomous-Vehicle-Navigation-ideology-.git
    cd Sri-Lankan-Traffic-Sign-Detection-System-for-Autonomous-Vehicle-Navigation-ideology-
    ```
 
-2. **Create and activate a virtual environment**
+2. Create and activate a virtual environment:
 
    ```bash
    python -m venv .venv
-   source .venv/bin/activate     # Linux / macOS
-   # .venv\Scripts\activate      # Windows (Command Prompt)
-   # .venv\Scripts\Activate.ps1  # Windows (PowerShell)
+   source .venv/bin/activate      # Linux / macOS
+   # .venv\Scripts\activate       # Windows (Command Prompt)
+   # .venv\Scripts\Activate.ps1   # Windows (PowerShell)
    ```
 
-3. **Install dependencies** (after `requirements.txt` is uploaded)
+3. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
----
+## Quick Start (YOLO CLI Inference)
 
-## How to Use
-
-After uploading the project files, run inference using your main script.  
-For example (adjust to your actual script names/paths):
+You can run inference directly with Ultralytics CLI:
 
 ```bash
-python src/infer.py \
-  --weights models/best.pt \
-  --source path/to/image_or_video
+yolo predict model=model_1.pt source=path/to/image_or_video
 ```
 
-### Typical Inputs
-
-- Single image (`.jpg`, `.png`)
-- Video file (`.mp4`, `.avi`)
-- Camera/stream source (if supported by your script)
-
-### Typical Outputs
-
-- Bounding boxes around detected traffic signs
-- Class labels
-- Confidence scores
-- Optional saved output images/videos
-
----
-
-## Training / Fine-Tuning (Optional)
-
-If training scripts are included after upload, document:
-
-- Dataset format and folder structure
-- YAML data configuration location
-- Training command
-- Checkpoint save path
-- Evaluation method
-
-Example training command (placeholder):
+You can switch to `model_2.pt` the same way:
 
 ```bash
-python src/train.py --data data/data.yaml --epochs 100 --imgsz 640
+yolo predict model=model_2.pt source=path/to/image_or_video
 ```
 
----
+## Typical Inputs and Outputs
+
+### Inputs
+- Single images (`.jpg`, `.png`)
+- Video files (`.mp4`, `.avi`)
+- Camera stream index (`source=0`)
+
+### Outputs
+- Detected traffic sign bounding boxes
+- Class labels and confidence scores
+- Saved prediction images/videos (Ultralytics default output directory)
 
 ## Troubleshooting
 
-- **`requirements.txt` not found**  
-  Ensure all project files are uploaded and located at the repository root.
+- `ModuleNotFoundError` or missing package errors:
+  - Re-run `pip install -r requirements.txt`
+- Slow inference:
+  - Use a CUDA-enabled environment, or reduce image/frame size
+- Model not found:
+  - Ensure you run commands from the repository root or provide full model path
 
-- **Model file not found (`best.pt`)**  
-  Confirm model weights are placed in the expected `models/` folder (or update command path).
+## Notes
 
-- **Low FPS / slow inference**  
-  Use GPU acceleration, reduce image size, or process fewer frames.
-
----
-
-## Contribution
-
-Contributions are welcome. Suggested workflow:
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request
-
----
-
-## License
-
-Please add the project license file (`LICENSE`) and update this section accordingly.
-
----
-
-## Acknowledgement
-
-- Ultralytics YOLOv8 ecosystem
-- Local Sri Lankan traffic sign data collection efforts
+If you add application code (for example, Streamlit UI or custom Python scripts), update this README with exact run commands for those files.
