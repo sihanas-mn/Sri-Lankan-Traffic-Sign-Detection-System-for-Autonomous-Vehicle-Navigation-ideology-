@@ -60,7 +60,8 @@ This README is designed as a user guide so the project can be used immediately o
    ```bash
    python -m venv .venv
    source .venv/bin/activate     # Linux / macOS
-   # .venv\Scripts\activate      # Windows (PowerShell)
+   # .venv\Scripts\activate      # Windows (Command Prompt)
+   # .venv\Scripts\Activate.ps1  # Windows (PowerShell)
    ```
 
 3. **Install dependencies** (after `requirements.txt` is uploaded)
